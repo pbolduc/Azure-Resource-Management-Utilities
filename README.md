@@ -42,7 +42,7 @@ public static async Task Run(HttpRequestMessage req, TraceWriter log)
     var serverName = resource[0];
     var databaseName = resource[1];
 
-    // get the certificate subject name
+    // get the certificate
     var certificate = ConfigurationManager.AppSettings["certificate-" + subscriptionId];
     var password = ConfigurationManager.AppSettings["certificate-password-" + subscriptionId];
     
