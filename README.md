@@ -44,8 +44,9 @@ public static async Task Run(HttpRequestMessage req, TraceWriter log)
 
     // get the certificate subject name
     var certificate = ConfigurationManager.AppSettings["certificate-" + subscriptionId];
-
-    var database = new SqlDatabase(subscriptionId, serverName, databaseName, X509FindType.FindBySubjectName, certificate);
+    var password = ConfigurationManager.AppSettings["certificate-password-" + subscriptionId];
+    
+    var database = new SqlDatabase(subscriptionId, serverName, databaseName, certificate, password);
 
     bool changed = false;
 
