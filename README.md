@@ -4,17 +4,17 @@ A set of helper classes that can be  used from Azure Functions to scale an Azure
 Example of changing the DTU level of a Azure SQL Database based on alerts.
 
 ```
-#r "AzureSqlDatabaseScale.dll"
-#r "Hyak.Common.dll"
-#r "Microsoft.Azure.Common.dll"
-#r "Microsoft.Azure.Common.NetFramework.dll"
-#r "Microsoft.Threading.Tasks.dll"
-#r "Microsoft.Threading.Tasks.Extensions.Desktop.dll"
-#r "Microsoft.Threading.Tasks.Extensions.dll"
-#r "Microsoft.WindowsAzure.Management.Sql.dll"
-#r "Newtonsoft.Json.dll"
-#r "System.Net.Http.Extensions.dll"
-#r "System.Net.Http.Primitives.dll"
+#r "..\shared\AzureSqlDatabaseScale.dll"
+#r "..\shared\Hyak.Common.dll"
+#r "..\shared\Microsoft.Azure.Common.dll"
+#r "..\shared\Microsoft.Azure.Common.NetFramework.dll"
+#r "..\shared\Microsoft.Threading.Tasks.dll"
+#r "..\shared\Microsoft.Threading.Tasks.Extensions.Desktop.dll"
+#r "..\shared\Microsoft.Threading.Tasks.Extensions.dll"
+#r "..\shared\Microsoft.WindowsAzure.Management.Sql.dll"
+#r "..\shared\Newtonsoft.Json.dll"
+#r "..\shared\System.Net.Http.Extensions.dll"
+#r "..\shared\System.Net.Http.Primitives.dll"
 
 using System;
 using System.Configuration;
@@ -43,21 +43,22 @@ public static async Task Run(HttpRequestMessage req, TraceWriter log)
     var databaseName = resource[1];
 
     // get the certificate
-    var certificate = ConfigurationManager.AppSettings["certificate-" + subscriptionId];
-    var password = ConfigurationManager.AppSettings["certificate-password-" + subscriptionId];
+    var thumbprint = ConfigurationManager.AppSettings["certificate-" + subscriptionId];
+    X509Certificate2 certificate = CertificateUtil.GetCertificate(X509FindType.FindByThumbprint, thumbprint);
     
-    var database = new SqlDatabase(subscriptionId, serverName, databaseName, certificate, password);
-
-    bool changed = false;
+    var database = new SqlDatabase(subscriptionId, serverName, databaseName, certificate);
 
     if (name == "Auto-Scale-Up")
     {
-        changed = await database.ScaleUp();
+        HttpStatusCode result = await database.ScaleUp();
     }
 
     if (name == "Auto-Scale-Down")
     {
-         changed = await database.ChangeServiceObjective(SqlDatabase.S0);
+         //HttpStatusCode result = await database.ScaleDown();
+         HttpStatusCode result = await database.ChangeServiceObjective(SqlDatabase.S0);
     }
+    
+    return req.CreateResponse(HttpStatusCode.OK);
 }
 ```
