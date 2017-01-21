@@ -18,38 +18,50 @@
         private readonly string _subscriptionId;
         private readonly string _serverName;
         private readonly string _databaseName;
-        private readonly Func<X509Certificate2> _getCertificate;
+        private readonly X509Certificate2 _certificate;
 
-        public SqlDatabase(string subscriptionId, string serverName, string databaseName, string certificate, string password)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlDatabase"/> class.
+        /// </summary>
+        /// <param name="subscriptionId">The subscription id.</param>
+        /// <param name="serverName">Name of the database server.</param>
+        /// <param name="databaseName">Name of the database.</param>
+        /// <param name="certificate">The certificate for authenticating to .</param>
+        /// <exception cref="ArgumentNullException">
+        /// subscriptionId
+        /// or
+        /// serverName
+        /// or
+        /// databaseName
+        /// or
+        /// certificate
+        /// </exception>
+        public SqlDatabase(string subscriptionId, string serverName, string databaseName, X509Certificate2 certificate)
         {
+            if (subscriptionId == null) throw new ArgumentNullException(nameof(subscriptionId));
+            if (serverName == null) throw new ArgumentNullException(nameof(serverName));
+            if (databaseName == null) throw new ArgumentNullException(nameof(databaseName));
+            if (certificate == null) throw new ArgumentNullException(nameof(certificate));
+
             _subscriptionId = subscriptionId;
             _serverName = serverName;
             _databaseName = databaseName;
-
-            _getCertificate = () => GetCertificate(certificate, password);
+            _certificate = certificate;
         }
 
-        public SqlDatabase(string subscriptionId, string serverName, string databaseName, X509FindType findType, string certificate)
-        {
-            _subscriptionId = subscriptionId;
-            _serverName = serverName;
-            _databaseName = databaseName;
-            _getCertificate = () => GetCertificate(findType, certificate);
-        }
-
-        public async Task<bool> ScaleUp(int levels = 1)
+        public async Task<HttpStatusCode> ScaleUp(int levels = 1)
         {
             return await Scale(Higher, levels);
         }
 
-        public async Task<bool> ScaleDown(int levels = 1)
+        public async Task<HttpStatusCode> ScaleDown(int levels = 1)
         {
             return await Scale(Lower, levels);
         }
 
-        public async Task<bool> ChangeServiceObjective(string newServiceObjectiveId)
+        public async Task<HttpStatusCode> ChangeServiceObjective(string newServiceObjectiveId)
         {
-            var credentials = GetSubscriptionCloudCredentials(_subscriptionId);
+            SubscriptionCloudCredentials credentials = new CertificateCloudCredentials(_subscriptionId, _certificate);
             SqlManagementClient client = new SqlManagementClient(credentials);
 
             DatabaseGetResponse getDatabaseResponse = await client.Databases.GetAsync(_serverName, _databaseName);
@@ -58,12 +70,12 @@
             if (database.AssignedServiceObjectiveId != database.ServiceObjectiveId)
             {
                 // service level change is already in progress
-                return false;
+                return HttpStatusCode.Conflict;
             }
 
             if (newServiceObjectiveId == database.ServiceObjectiveId)
             {
-                return false; // already at lowest service level
+                return HttpStatusCode.OK; // already at lowest service level
             }
 
             DatabaseUpdateParameters parameters = new DatabaseUpdateParameters();
@@ -72,12 +84,12 @@
             parameters.ServiceObjectiveId = newServiceObjectiveId;
             DatabaseUpdateResponse databaseUpdateResponse = await client.Databases.UpdateAsync(_serverName, _databaseName, parameters);
 
-            return databaseUpdateResponse.StatusCode == HttpStatusCode.OK;
+            return databaseUpdateResponse.StatusCode;
         }
 
-        private async Task<bool> Scale(Func<string, string> change, int levels = 1)
+        private async Task<HttpStatusCode> Scale(Func<string, string> change, int levels = 1)
         {
-            var credentials = GetSubscriptionCloudCredentials(_subscriptionId);
+            SubscriptionCloudCredentials credentials = new CertificateCloudCredentials(_subscriptionId, _certificate);
             SqlManagementClient client = new SqlManagementClient(credentials);
 
             DatabaseGetResponse getDatabaseResponse = await client.Databases.GetAsync(_serverName, _databaseName);
@@ -91,19 +103,17 @@
 
             if (newServiceObjectiveId == database.ServiceObjectiveId)
             {
-                return false; // already at lowest service level
+                return HttpStatusCode.OK; // already at lowest service level
             }
 
             return await ChangeServiceObjective(newServiceObjectiveId);
         }
 
-        private SubscriptionCloudCredentials GetSubscriptionCloudCredentials(string subscriptionId)
-        {
-            X509Certificate2 certificate = _getCertificate();
-            SubscriptionCloudCredentials credentials = new CertificateCloudCredentials(subscriptionId, certificate);
-            return credentials;
-        }
-
+        /// <summary>
+        /// Get the next lower service objective.
+        /// </summary>
+        /// <param name="serviceObjectiveId">The current service objective.</param>
+        /// <returns></returns>
         private static string Lower(string serviceObjectiveId)
         {
             string newServiceObjectiveId = serviceObjectiveId;
@@ -124,18 +134,33 @@
                 case ServiceObjectives.S3:
                     newServiceObjectiveId = ServiceObjectives.S2;
                     break;
+
                 case ServiceObjectives.P1:
                     break;
                 case ServiceObjectives.P2:
                     newServiceObjectiveId = ServiceObjectives.P1;
                     break;
-                case ServiceObjectives.P3:
+                case ServiceObjectives.P4:
                     newServiceObjectiveId = ServiceObjectives.P2;
+                    break;
+                case ServiceObjectives.P6:
+                    newServiceObjectiveId = ServiceObjectives.P4;
+                    break;
+                case ServiceObjectives.P11:
+                    newServiceObjectiveId = ServiceObjectives.P6;
+                    break;
+                case ServiceObjectives.P15:
+                    newServiceObjectiveId = ServiceObjectives.P11;
                     break;
             }
             return newServiceObjectiveId;
         }
 
+        /// <summary>
+        /// Get the next higher service objective.
+        /// </summary>
+        /// <param name="serviceObjectiveId">The current service objective.</param>
+        /// <returns></returns>
         private static string Higher(string serviceObjectiveId)
         {
             string newServiceObjectiveId = serviceObjectiveId;
@@ -161,48 +186,21 @@
                     newServiceObjectiveId = ServiceObjectives.P2;
                     break;
                 case ServiceObjectives.P2:
-                    newServiceObjectiveId = ServiceObjectives.P3;
+                    newServiceObjectiveId = ServiceObjectives.P4;
                     break;
-
-                case ServiceObjectives.P3:
+                case ServiceObjectives.P4:
+                    newServiceObjectiveId = ServiceObjectives.P6;
+                    break;
+                case ServiceObjectives.P6:
+                    newServiceObjectiveId = ServiceObjectives.P11;
+                    break;
+                case ServiceObjectives.P11:
+                    newServiceObjectiveId = ServiceObjectives.P15;
+                    break;
+                case ServiceObjectives.P15:
                     break;
             }
             return newServiceObjectiveId;
-        }
-
-        private static X509Certificate2 GetCertificate(string base64Certificate, string password)
-        {
-            var certificateBytes = Convert.FromBase64String(base64Certificate);
-            var certificate = new X509Certificate2(certificateBytes, password, X509KeyStorageFlags.MachineKeySet);
-            return certificate;
-        }
-
-        private static X509Certificate2 GetCertificate(X509FindType findType, string certificateName)
-        {
-            // Initialize the Certificate Credential to be used by ADAL.
-            X509Certificate2 certificate = null;
-            X509Store store = new X509Store(StoreLocation.CurrentUser);
-            try
-            {
-                store.Open(OpenFlags.ReadOnly);
-                // Place all certificates in an X509Certificate2Collection object.
-                X509Certificate2Collection certCollection = store.Certificates;
-                // Find unexpired certificates.
-                X509Certificate2Collection currentCerts = certCollection.Find(X509FindType.FindByTimeValid, DateTime.Now, false);
-                // From the collection of unexpired certificates, find the ones with the correct name.
-                X509Certificate2Collection signingCert = currentCerts.Find(findType, certificateName, false);
-                if (signingCert.Count != 0)
-                {
-                    // Return the first certificate in the collection, has the right name and is current.
-                    certificate = signingCert[0];
-                }
-            }
-            finally
-            {
-                store.Close();
-            }
-
-            return certificate;
         }
     }
 }
