@@ -12,7 +12,9 @@ as a Web Job with a Timer Trigger.
 
 ## Setup
 
-1. 
+1. create application in Azure Active Directory and configure authentication
+2. deploy web job
+3. deploy and configure configuration file. The location of the configuration file should be added in an application setting called "database-config-file".
 
 ### Authentication
 
@@ -58,6 +60,37 @@ in Azure Active Directory.  You will need to determine how you will authenticate
             "maxTier": "S3"
           }
         ]
+      }
+    ]
+  }
+]
+```
+
+#### Minimal Configuration File
+
+The configuration file is designed to have reasonable defaults. Below is a minimal configuation file.
+
+```
+[
+  {
+    "authentication": {
+      "subscriptionId": "{subscription-id}",
+      "tenant": "{active-directory-tenant}",
+      "clientId": "{application-client-id}",
+      "clientSecret": "{application-client-secret}"
+     }
+    },
+    "databases": [
+      {
+        "resourceGroup": "",
+        "server": "",
+        "database": "",
+        "settings": [
+          {
+            "minTier": "S0",
+            "maxTier": "S3"
+          }
+
       }
     ]
   }
