@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FABB6363-47AC-40A2-9011-82C385C4E1DA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AzureScale</RootNamespace>
+    <AssemblyName>AzureScale</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=2.28.3.860, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.3\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms, Version=2.28.3.860, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.3\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.5\lib\net45\Microsoft.Rest.ClientRuntime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.Azure.3.3.5\lib\net45\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure.Authentication, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.Azure.Authentication.2.2.10\lib\net45\Microsoft.Rest.ClientRuntime.Azure.Authentication.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\AzureCredentials.cs" />
+    <Compile Include="Authentication\CertificateLoginInformation.cs" />
+    <Compile Include="AzureEnvironment.cs" />
+    <Compile Include="Certificates.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\DatabaseResourceUsageMetricsFilter.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\DatabasesOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\DatabasesOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\DatabasesOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\DatabasesOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\ElasticPoolsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\ElasticPoolsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\IDatabasesOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\IElasticPoolsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\IRecommendedElasticPoolsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\IServersOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\ISqlManagementClient.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\Column.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\CreateMode.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\Database.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\DatabaseEditions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\DatabaseMetric.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ElasticPool.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ElasticPoolActivity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ElasticPoolDatabaseActivity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ElasticPoolEditions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ElasticPoolState.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\OperationImpact.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\Page.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RecommendedDatabaseProperties.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RecommendedElasticPool.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RecommendedElasticPoolMetric.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RecommendedIndex.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RecommendedIndexActions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RecommendedIndexStates.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RecommendedIndexTypes.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ReplicationLink.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ReplicationRole.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ReplicationState.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\Resource.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RestorePoint.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\RestorePointTypes.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\Schema.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\Server.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ServerFirewallRule.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ServerMetric.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ServerVersion.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ServiceObjective.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ServiceObjectiveName.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\ServiceTierAdvisor.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\SloUsageMetric.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\SqlSubResource.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\Table.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\TableType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\TargetDatabaseEditions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\TargetElasticPoolEditions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\TransparentDataEncryption.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\TransparentDataEncryptionActivity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\TransparentDataEncryptionActivityStates.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\TransparentDataEncryptionStates.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\UpgradeHint.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\Models\UpgradeRecommendedElasticPoolProperties.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\RecommendedElasticPoolsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\RecommendedElasticPoolsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\ServersOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\ServersOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Generated\SqlManagementClient.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\IDatabasesOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Models\DatabaseResourceUsageMetricsResponse.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Models\MetricValue.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Models\Name.cs" />
+    <Compile Include="Microsoft.Azure.Management.Sql\Models\Value.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\AppServiceCertificateOrdersOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\AppServiceCertificateOrdersOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\AppServiceEnvironmentsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\AppServiceEnvironmentsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\AppServicePlansOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\AppServicePlansOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\CertificatesOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\CertificatesOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\DeletedWebAppsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\DeletedWebAppsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\DomainsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\DomainsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IAppServiceCertificateOrdersOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IAppServiceEnvironmentsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IAppServicePlansOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\ICertificatesOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IDeletedWebAppsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IDomainsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IRecommendationsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\ITopLevelDomainsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IWebAppsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\IWebSiteManagementClient.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AccessControlEntryAction.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Address.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AddressResponse.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ApiDefinitionInfo.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ApplicationLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AppServiceCertificate.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AppServiceCertificateOrder.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AppServiceEnvironment.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AppServicePlan.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AppServicePlanRestrictions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AutoHealActions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AutoHealActionType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AutoHealCustomAction.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AutoHealRules.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AutoHealTriggers.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AzureBlobStorageApplicationLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AzureBlobStorageHttpLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AzureResourceType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\AzureTableStorageApplicationLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\BackupItem.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\BackupItemStatus.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\BackupRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\BackupRestoreOperationType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\BackupSchedule.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\BuiltInAuthenticationProvider.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Capability.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Certificate.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CertificateDetails.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CertificateEmail.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CertificateOrderAction.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CertificateOrderActionType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CertificateOrderStatus.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CertificateProductType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Channels.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CheckNameResourceTypes.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CloneAbilityResult.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CloningInfo.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ComputeModeOptions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ConnectionStringDictionary.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ConnectionStringType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ConnStringInfo.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ConnStringValueTypePair.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Contact.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CorsSettings.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CsmMoveResourceEnvelope.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CsmPublishingProfileOptions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CsmSiteRecoveryEntity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CsmSlotEntity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CsmUsageQuota.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Csr.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CustomHostnameAnalysisResult.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\CustomHostNameDnsRecordType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DatabaseBackupSetting.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DatabaseType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DeletedSite.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Deployment.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DnsVerificationTestResult.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Domain.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DomainAvailablilityCheckResult.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DomainControlCenterSsoRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DomainOwnershipIdentifier.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DomainPurchaseConsent.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DomainRecommendationSearchParameters.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DomainStatus.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\DomainType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\EnabledConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ErrorEntity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Experiments.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\FileSystemApplicationLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\FileSystemHttpLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\FrequencyUnit.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\GeoRegion.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\GlobalCsmSkuDescription.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HandlerMapping.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HostingEnvironmentDiagnostics.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HostingEnvironmentProfile.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HostingEnvironmentStatus.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HostName.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HostNameBinding.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HostNameSslState.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HostNameType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HttpLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HybridConnection.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HybridConnectionKey.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\HybridConnectionLimits.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Identifier.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\InAvailabilityReasonType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\InternalLoadBalancingMode.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\IpSecurityRestriction.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\KeyVaultSecretStatus.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\LocalizableString.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\LogLevel.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ManagedPipelineMode.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\MetricAvailabilily.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\MetricDefinition.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\MigrateMySqlRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\NameIdentifier.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\NameValuePair.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\NetworkAccessControlEntry.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\NetworkFeatures.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\NotificationLevel.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Operation.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\OperationStatus.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Page.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\PerfMonResponse.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\PerfMonSample.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\PerfMonSet.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\PremierAddOn.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\PremierAddOnOffer.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ProvisioningState.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\PublishingProfileFormat.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\PushSettings.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RampUpRule.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Recommendation.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RecommendationRule.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RecoverResponse.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ReissueCertificateOrderRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RelayServiceConnectionEntity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RenewCertificateOrderRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RequestsBasedTrigger.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Resource.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceMetric.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceMetricAvailability.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceMetricDefinition.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceMetricName.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceMetricProperty.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceMetricValue.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceNameAvailability.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceNameAvailabilityRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ResourceScopeType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RestoreRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RestoreResponse.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\RouteType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ScmType.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Site.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteAuthSettings.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteAvailabilityState.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteCloneability.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteCloneabilityCriterion.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteConfigurationSnapshotInfo.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteInstance.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteLimits.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteLoadBalancing.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteLogsConfig.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteMachineKey.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SitePhpErrorLogFlag.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteSeal.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteSealRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SiteSourceControl.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SkuCapacity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SkuDescription.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SkuInfo.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SkuInfos.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SkuName.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SlotConfigNamesResource.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SlotDifference.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SlotSwapStatus.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SlowRequestsBasedTrigger.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Snapshot.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SourceControl.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\SslState.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\StampCapacity.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\StatusCodesBasedTrigger.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\StatusOptions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\StorageMigrationOptions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\StorageMigrationResponse.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\StringDictionary.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\TldLegalAgreement.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\TopLevelDomain.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\TopLevelDomainAgreementOption.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\UnauthenticatedClientAction.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\Usage.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\UsageState.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\User.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ValidateRequest.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ValidateResourceTypes.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ValidateResponse.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\ValidateResponseError.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\VirtualApplication.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\VirtualDirectory.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\VirtualIPMapping.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\VirtualNetworkProfile.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\VnetGateway.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\VnetInfo.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\VnetRoute.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\WorkerPool.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\Models\WorkerSizeOptions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\RecommendationsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\RecommendationsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\TopLevelDomainsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\TopLevelDomainsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\WebAppsOperations.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\WebAppsOperationsExtensions.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\WebSiteManagementClient.cs" />
+    <Compile Include="Microsoft.Azure.Management.Websites\Generated\WebSiteManagementClientExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sql\ServiceObjectives.cs" />
+    <Compile Include="Sql\SqlDatabaseClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WebSites\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

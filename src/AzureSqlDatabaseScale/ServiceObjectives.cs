@@ -35,10 +35,10 @@
 
         public const string P1 = "7203483a-c4fb-4304-9e9f-17c71c904f5d";
         public const string P2 = "a7d1b92d-c987-4375-b54d-2b1d0e0f5bb0";
-        public const string P4 = "todo-4";
-        public const string P6 = "todo-6";
-        public const string P11 = "todo-11";
-        public const string P15 = "todo-15";
+        public const string P4 = "afe1eee1-1f12-4e5f-9ad6-2de9c12cb4dc";
+        public const string P6 = "43940481-9191-475a-9dba-6b505615b9aa";
+        public const string P11 = "dd00d544-bbc0-4f61-ba60-cdce0c410288";
+        public const string P15 = "5bc86cca-9a96-4a94-90ef-bbdfcfbf2d71";
 
         public static string Standard(int dtu)
         {

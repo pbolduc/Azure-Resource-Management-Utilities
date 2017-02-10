@@ -1,6 +1,12 @@
 # AzureSqlDatabaseScale
 A set of helper classes that can be  used from Azure Functions to scale an Azure SQL Database Up or Down.
 
+
+# Setup
+
+https://blogs.msdn.microsoft.com/tomholl/2015/06/18/authenticating-to-azure-resource-manager-using-aad-and-certificates/
+
+
 Example of changing the DTU level of a Azure SQL Database based on alerts.
 
 ```
