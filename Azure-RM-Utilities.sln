@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft.Azure.Management", "Microsoft.Azure.Management", "{EB2F8015-C030-4E9F-999C-1F85EA9D0FE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Azure.Management.Sql", "src\ResourceManagement\Sql\Microsoft.Azure.Management.Sql\Microsoft.Azure.Management.Sql.csproj", "{6A824A76-CC75-46DD-80B2-5F186BB1B167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{21DF1639-D3ED-42DD-8821-D6A47F7360BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Azure.Management.Sql.Extensions", "src\ResourceManagement\Sql\Microsoft.Azure.Management.Sql.Extensions\Microsoft.Azure.Management.Sql.Extensions.csproj", "{BD9A18B9-BB42-4367-9BCE-D45F4D8EC97F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Azure.Management.ResourceManager.Fluent", "src\ResourceManagement\ResourceManager\Microsoft.Azure.Management.ResourceManager.Fluent\Microsoft.Azure.Management.ResourceManager.Fluent.csproj", "{E896EB30-3764-4AB5-8D51-41F651B30CA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure-RM-Utils", "src\Azure-RM-Utils\Azure-RM-Utils.csproj", "{0A73D932-266D-4584-A069-E60604D536B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure-RM-Utils-Console", "test\Azure-RM-Utils-Console\Azure-RM-Utils-Console.csproj", "{B46D0658-5485-4A7B-BE34-49F10A5CF1DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A824A76-CC75-46DD-80B2-5F186BB1B167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A824A76-CC75-46DD-80B2-5F186BB1B167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A824A76-CC75-46DD-80B2-5F186BB1B167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A824A76-CC75-46DD-80B2-5F186BB1B167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21DF1639-D3ED-42DD-8821-D6A47F7360BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21DF1639-D3ED-42DD-8821-D6A47F7360BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21DF1639-D3ED-42DD-8821-D6A47F7360BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21DF1639-D3ED-42DD-8821-D6A47F7360BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD9A18B9-BB42-4367-9BCE-D45F4D8EC97F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9A18B9-BB42-4367-9BCE-D45F4D8EC97F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD9A18B9-BB42-4367-9BCE-D45F4D8EC97F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD9A18B9-BB42-4367-9BCE-D45F4D8EC97F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E896EB30-3764-4AB5-8D51-41F651B30CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E896EB30-3764-4AB5-8D51-41F651B30CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E896EB30-3764-4AB5-8D51-41F651B30CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E896EB30-3764-4AB5-8D51-41F651B30CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A73D932-266D-4584-A069-E60604D536B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A73D932-266D-4584-A069-E60604D536B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A73D932-266D-4584-A069-E60604D536B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A73D932-266D-4584-A069-E60604D536B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B46D0658-5485-4A7B-BE34-49F10A5CF1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B46D0658-5485-4A7B-BE34-49F10A5CF1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B46D0658-5485-4A7B-BE34-49F10A5CF1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B46D0658-5485-4A7B-BE34-49F10A5CF1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A824A76-CC75-46DD-80B2-5F186BB1B167} = {EB2F8015-C030-4E9F-999C-1F85EA9D0FE2}
+		{BD9A18B9-BB42-4367-9BCE-D45F4D8EC97F} = {EB2F8015-C030-4E9F-999C-1F85EA9D0FE2}
+		{E896EB30-3764-4AB5-8D51-41F651B30CA3} = {EB2F8015-C030-4E9F-999C-1F85EA9D0FE2}
+	EndGlobalSection
+EndGlobal

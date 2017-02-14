@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A824A76-CC75-46DD-80B2-5F186BB1B167}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Azure.Management.Sql</RootNamespace>
+    <AssemblyName>Microsoft.Azure.Management.Sql</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.1.0\lib\net45\Microsoft.Rest.ClientRuntime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.Azure.3.2.0\lib\net45\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generated\DatabasesOperations.cs" />
+    <Compile Include="Generated\DatabasesOperationsExtensions.cs" />
+    <Compile Include="Generated\ElasticPoolsOperations.cs" />
+    <Compile Include="Generated\ElasticPoolsOperationsExtensions.cs" />
+    <Compile Include="Generated\IDatabasesOperations.cs" />
+    <Compile Include="Generated\IElasticPoolsOperations.cs" />
+    <Compile Include="Generated\IRecommendedElasticPoolsOperations.cs" />
+    <Compile Include="Generated\IServersOperations.cs" />
+    <Compile Include="Generated\ISqlManagementClient.cs" />
+    <Compile Include="Generated\Models\Column.cs" />
+    <Compile Include="Generated\Models\CreateMode.cs" />
+    <Compile Include="Generated\Models\Database.cs" />
+    <Compile Include="Generated\Models\DatabaseEditions.cs" />
+    <Compile Include="Generated\Models\DatabaseMetric.cs" />
+    <Compile Include="Generated\Models\ElasticPool.cs" />
+    <Compile Include="Generated\Models\ElasticPoolActivity.cs" />
+    <Compile Include="Generated\Models\ElasticPoolDatabaseActivity.cs" />
+    <Compile Include="Generated\Models\ElasticPoolEditions.cs" />
+    <Compile Include="Generated\Models\ElasticPoolState.cs" />
+    <Compile Include="Generated\Models\OperationImpact.cs" />
+    <Compile Include="Generated\Models\Page.cs" />
+    <Compile Include="Generated\Models\RecommendedDatabaseProperties.cs" />
+    <Compile Include="Generated\Models\RecommendedElasticPool.cs" />
+    <Compile Include="Generated\Models\RecommendedElasticPoolMetric.cs" />
+    <Compile Include="Generated\Models\RecommendedIndex.cs" />
+    <Compile Include="Generated\Models\RecommendedIndexActions.cs" />
+    <Compile Include="Generated\Models\RecommendedIndexStates.cs" />
+    <Compile Include="Generated\Models\RecommendedIndexTypes.cs" />
+    <Compile Include="Generated\Models\ReplicationLink.cs" />
+    <Compile Include="Generated\Models\ReplicationRole.cs" />
+    <Compile Include="Generated\Models\ReplicationState.cs" />
+    <Compile Include="Generated\Models\Resource.cs" />
+    <Compile Include="Generated\Models\RestorePoint.cs" />
+    <Compile Include="Generated\Models\RestorePointTypes.cs" />
+    <Compile Include="Generated\Models\Schema.cs" />
+    <Compile Include="Generated\Models\Server.cs" />
+    <Compile Include="Generated\Models\ServerFirewallRule.cs" />
+    <Compile Include="Generated\Models\ServerMetric.cs" />
+    <Compile Include="Generated\Models\ServerVersion.cs" />
+    <Compile Include="Generated\Models\ServiceObjective.cs" />
+    <Compile Include="Generated\Models\ServiceObjectiveName.cs" />
+    <Compile Include="Generated\Models\ServiceTierAdvisor.cs" />
+    <Compile Include="Generated\Models\SloUsageMetric.cs" />
+    <Compile Include="Generated\Models\SqlSubResource.cs" />
+    <Compile Include="Generated\Models\Table.cs" />
+    <Compile Include="Generated\Models\TableType.cs" />
+    <Compile Include="Generated\Models\TargetDatabaseEditions.cs" />
+    <Compile Include="Generated\Models\TargetElasticPoolEditions.cs" />
+    <Compile Include="Generated\Models\TransparentDataEncryption.cs" />
+    <Compile Include="Generated\Models\TransparentDataEncryptionActivity.cs" />
+    <Compile Include="Generated\Models\TransparentDataEncryptionActivityStates.cs" />
+    <Compile Include="Generated\Models\TransparentDataEncryptionStates.cs" />
+    <Compile Include="Generated\Models\UpgradeHint.cs" />
+    <Compile Include="Generated\Models\UpgradeRecommendedElasticPoolProperties.cs" />
+    <Compile Include="Generated\RecommendedElasticPoolsOperations.cs" />
+    <Compile Include="Generated\RecommendedElasticPoolsOperationsExtensions.cs" />
+    <Compile Include="Generated\ServersOperations.cs" />
+    <Compile Include="Generated\ServersOperationsExtensions.cs" />
+    <Compile Include="Generated\SqlManagementClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="generate.cmd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
